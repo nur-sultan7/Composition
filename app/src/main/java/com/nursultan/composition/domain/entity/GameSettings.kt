@@ -4,5 +4,5 @@ data class GameSettings (
     val maxSumValue: Int,
     val minCountRightAnswers: Int,
     val minPercentOfRightAnswers: Int,
-    val gameRimeInSeconds: Int
+    val gameTimeInSeconds: Int
 )
