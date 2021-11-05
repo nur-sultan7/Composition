@@ -6,17 +6,36 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.nursultan.composition.R
+import com.nursultan.composition.databinding.FragmentGameBinding
+import com.nursultan.composition.databinding.FragmentWelcomeBinding
+import java.lang.RuntimeException
 
-class WelcomeFragment: Fragment() {
+class WelcomeFragment : Fragment() {
+    private var _binding: FragmentWelcomeBinding? = null
+    private val binding: FragmentWelcomeBinding
+        get() = _binding ?: throw RuntimeException("FragmentWelcomeBinding is null")
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.btLetsStart.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.main_container, ChooseLevelFragment.newInstance())
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_welcome, container, false)
+    ): View {
+        _binding = FragmentWelcomeBinding.inflate(inflater,container,false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
