@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import com.nursultan.composition.R
 import com.nursultan.composition.databinding.FragmentGameBinding
 import com.nursultan.composition.domain.entity.GameResult
@@ -18,6 +16,7 @@ class GameFragment : Fragment() {
 
     private lateinit var viewModel: GameViewModel
     private lateinit var level: Level
+    private lateinit var gameSettings: GameSettings
     private var iif = 10
     private var _binding: FragmentGameBinding? = null
     private val binding: FragmentGameBinding
@@ -40,16 +39,19 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.setGameSetting(level)
+        viewModel.startGame(level)
         viewModel.gameSettings.observe(viewLifecycleOwner, {
-            binding.tvTimer.text = it.gameTimeInSeconds.toString()
-            binding.tvProgress.text = String.format(
-                getString(R.string.game_right_answers_count),
-                ZERO_RIGHT_ANSWERS,
-                it.minCountRightAnswers
-            )
+            gameSettings = it
+            val timerTime = it.gameTimeInSeconds
+            binding.tvTimer.text = timerTime.toString()
             binding.progressBar.secondaryProgress = it.minPercentOfRightAnswers
             viewModel.generateGameQuestion(it.maxSumValue)
+            viewModel.startGame(timerTime.toLong())
+        })
+        viewModel.gameIsFinished.observe(viewLifecycleOwner, {
+            if (it) {
+                launchGameResultFragment(viewModel.getGameResult())
+            }
         })
         viewModel.gameQuestion.observe(viewLifecycleOwner, {
             binding.gameSum.text = it.sum.toString()
@@ -61,11 +63,46 @@ class GameFragment : Fragment() {
             binding.tvOption5.text = it.option[4].toString()
             binding.tvOption6.text = it.option[5].toString()
         })
+        viewModel.timerTime.observe(viewLifecycleOwner, {
+            binding.tvTimer.text = it.toString()
+        })
+        viewModel.countOfRightAnswers.observe(viewLifecycleOwner, {
+            binding.tvProgress.text = String.format(
+                getString(R.string.game_right_answers_count),
+                it,
+                viewModel.getMinCountRightAnswers()
+            )
+        })
+        viewModel.percentageOfRightAnswers.observe(viewLifecycleOwner,{
+            binding.progressBar.progress=it
+        })
 
         binding.tvOption1.setOnClickListener {
-
+            checkAnswer(binding.tvOption1.text)
         }
+        binding.tvOption2.setOnClickListener {
+            checkAnswer(binding.tvOption2.text)
+        }
+        binding.tvOption3.setOnClickListener {
+            checkAnswer(binding.tvOption3.text)
+        }
+        binding.tvOption4.setOnClickListener {
+            checkAnswer(binding.tvOption4.text)
+        }
+        binding.tvOption5.setOnClickListener {
+            checkAnswer(binding.tvOption5.text)
+        }
+        binding.tvOption6.setOnClickListener {
+            checkAnswer(binding.tvOption6.text)
+        }
+
+
     }
+
+    private fun checkAnswer(answer: CharSequence) {
+        viewModel.checkIsRightAnswer(answer.toString().toInt())
+    }
+
 
     private fun launchGameResultFragment(gameResult: GameResult) {
         requireActivity().supportFragmentManager.beginTransaction()
