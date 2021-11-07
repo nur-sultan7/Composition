@@ -40,7 +40,7 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.startGame(level)
-        viewModel.gameSettings.observe(viewLifecycleOwner, {
+        viewModel..observe(viewLifecycleOwner, {
             gameSettings = it
             val timerTime = it.gameTimeInSeconds
             binding.tvTimer.text = timerTime.toString()
@@ -66,12 +66,8 @@ class GameFragment : Fragment() {
         viewModel.timerTime.observe(viewLifecycleOwner, {
             binding.tvTimer.text = it.toString()
         })
-        viewModel.countOfRightAnswers.observe(viewLifecycleOwner, {
-            binding.tvProgress.text = String.format(
-                getString(R.string.game_right_answers_count),
-                it,
-                viewModel.getMinCountRightAnswers()
-            )
+        viewModel.progressString.observe(viewLifecycleOwner,{
+            binding.tvProgress.text =it
         })
         viewModel.percentageOfRightAnswers.observe(viewLifecycleOwner,{
             binding.progressBar.progress=it
