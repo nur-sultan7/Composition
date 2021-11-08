@@ -5,6 +5,7 @@ import android.os.CountDownTimer
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.nursultan.composition.R
 import com.nursultan.composition.data.GameRepositoryImpl
 import com.nursultan.composition.domain.entity.GameResult
@@ -14,9 +15,11 @@ import com.nursultan.composition.domain.entity.Question
 import com.nursultan.composition.domain.usecases.GenerateQuestionUseCase
 import com.nursultan.composition.domain.usecases.GetGameSettingUseCase
 
-class GameViewModel(application: Application) : AndroidViewModel(application) {
+class GameViewModel(
+    private val application: Application,
+    private val level: Level
+) : ViewModel() {
     private val gameRepositoryImp = GameRepositoryImpl
-    private val context = application
 
     private lateinit var gameSettings: GameSettings
     private var timer: CountDownTimer? = null
@@ -63,7 +66,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun updateProgress() {
         _progressString.value = String.format(
-            context.resources.getString(R.string.game_right_answers_count),
+            application.resources.getString(R.string.game_right_answers_count),
             countOfRightAnswers,
             gameSettings.minCountRightAnswers
         )
@@ -100,8 +103,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         _gameQuestion.value = generateQuestionUseCase(maxSum)
         countOfQuestion++
     }
+    init {
+        startGame()
+    }
 
-    fun startGame(level: Level) {
+    private fun startGame() {
         gameSettings = getGameSettingUseCase(level)
         startTimer(gameSettings.gameTimeInSeconds.toLong())
         generateGameQuestion(gameSettings.maxSumValue)
