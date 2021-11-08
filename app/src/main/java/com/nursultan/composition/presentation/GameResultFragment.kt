@@ -34,30 +34,41 @@ class GameResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.ivGameResult.setImageDrawable(
-            ContextCompat.getDrawable(
-                requireContext(),
-                getDrawable(result.winner)
+        setOnClickListeners()
+        bindingViews()
+    }
+
+    private fun bindingViews() {
+        with(binding)
+        {
+            ivGameResult.setImageDrawable(
+                ContextCompat.getDrawable(
+                    requireContext(),
+                    getDrawable(result.winner)
+                )
             )
-        )
-        binding.tvRequiredPercentage.text = String.format(
-            getString(R.string.required_right_answers_percentage),
-            result.gameSettings.minPercentOfRightAnswers
-        )
+            tvRequiredPercentage.text = String.format(
+                getString(R.string.required_right_answers_percentage),
+                result.gameSettings.minPercentOfRightAnswers
+            )
 
-        binding.tvRequiredScore.text = String.format(
-            getString(R.string.required_right_answers),
-            result.gameSettings.minCountRightAnswers
-        )
+            tvRequiredScore.text = String.format(
+                getString(R.string.required_right_answers),
+                result.gameSettings.minCountRightAnswers
+            )
 
-        binding.tvRightPercentage.text = String.format(
-            getString(R.string.right_answers_percentage),
+            tvRightPercentage.text = String.format(
+                getString(R.string.right_answers_percentage),
                 result.percentOfRightAnswers.toString()
-        )
-        binding.tvScore.text = String.format(
-            getString(R.string.score_answers),
-            result.countOfRightAnswers
-        )
+            )
+            tvScore.text = String.format(
+                getString(R.string.score_answers),
+                result.countOfRightAnswers
+            )
+        }
+    }
+
+    private fun setOnClickListeners() {
         binding.btnRetry.setOnClickListener {
             retryGame()
         }
