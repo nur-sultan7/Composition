@@ -61,15 +61,15 @@ class GameFragment : Fragment() {
         observeModelView()
         setClickOptions()
     }
-    private fun setClickOptions()
-    {
+
+    private fun setClickOptions() {
         for (tvOption in tvOptions)
             tvOption.setOnClickListener {
                 checkAnswer(tvOption.text)
             }
     }
-    private fun observeModelView()
-    {
+
+    private fun observeModelView() {
         viewModel.isRequiredCount.observe(viewLifecycleOwner, {
             binding.tvProgress.setTextColor(getIsRightColor(it))
         })
@@ -82,16 +82,9 @@ class GameFragment : Fragment() {
         viewModel.gameQuestion.observe(viewLifecycleOwner, {
             binding.gameSum.text = it.sum.toString()
             binding.tvLeftNumber.text = it.visibleNumber.toString()
-            for (index in 0 until tvOptions.size)
-            {
+            for (index in 0 until tvOptions.size) {
                 tvOptions[index].text = it.option[index].toString()
             }
-            binding.tvOption1.text = it.option[0].toString()
-            binding.tvOption2.text = it.option[1].toString()
-            binding.tvOption3.text = it.option[2].toString()
-            binding.tvOption4.text = it.option[3].toString()
-            binding.tvOption5.text = it.option[4].toString()
-            binding.tvOption6.text = it.option[5].toString()
         })
         viewModel.timerTime.observe(viewLifecycleOwner, {
             binding.tvTimer.text = it.toString()
@@ -100,15 +93,15 @@ class GameFragment : Fragment() {
             binding.tvProgress.text = it
         })
         viewModel.percentageOfRightAnswers.observe(viewLifecycleOwner, {
-            binding.progressBar.setProgress(it,true)
+            binding.progressBar.setProgress(it, true)
         })
     }
 
     private fun getIsRightColor(boolean: Boolean): Int {
         return if (boolean) {
-            ContextCompat.getColor(requireContext(),android.R.color.holo_green_dark)
+            ContextCompat.getColor(requireContext(), android.R.color.holo_green_dark)
         } else {
-            ContextCompat.getColor(requireContext(),android.R.color.holo_red_light)
+            ContextCompat.getColor(requireContext(), android.R.color.holo_red_light)
         }
     }
 
