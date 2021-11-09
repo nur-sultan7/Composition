@@ -18,11 +18,11 @@ import java.lang.RuntimeException
 
 class GameFragment : Fragment() {
 
-    private val viewModel: GameViewModel by lazy {
-        ViewModelProvider(
-            this,
-            AndroidViewModelFactory.getInstance(requireActivity().application)
-        )[GameViewModel::class.java]
+    private val gameViewModelFactory by lazy {
+        GameViewModelFactory(requireActivity().application, level)
+    }
+    private val viewModel by lazy {
+        ViewModelProvider(this,gameViewModelFactory)[GameViewModel::class.java]
     }
     private val tvOptions by lazy {
         mutableListOf<TextView>().apply {
@@ -56,7 +56,6 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.startGame(level)
         binding.progressBar.secondaryProgress = viewModel.requiredPercentageOfRightAnswers
         observeModelView()
         setClickOptions()
