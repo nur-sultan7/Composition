@@ -32,7 +32,7 @@ object GameRepositoryImpl : GameRepository {
                 10,
                 3,
                 56,
-                60
+                10
             )
             Level.EASY -> GameSettings(
                 10,
