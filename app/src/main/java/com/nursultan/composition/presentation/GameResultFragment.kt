@@ -8,19 +8,23 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.nursultan.composition.R
 import com.nursultan.composition.databinding.FragmentGameResultBinding
 import com.nursultan.composition.domain.entity.GameResult
 
 class GameResultFragment : Fragment() {
-    private lateinit var result: GameResult
+    private val gameResultArgs by navArgs<GameResultFragmentArgs>()
+    private val result by lazy {
+        gameResultArgs.gameResult
+    }
     private var _binding: FragmentGameResultBinding? = null
     private val binding: FragmentGameResultBinding
         get() = _binding ?: throw RuntimeException("FragmentGameResultBinding is null")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        parseGameResult()
     }
 
     override fun onCreateView(
@@ -72,14 +76,15 @@ class GameResultFragment : Fragment() {
         binding.btnRetry.setOnClickListener {
             retryGame()
         }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    retryGame()
-                }
 
-            })
+//        requireActivity().onBackPressedDispatcher.addCallback(
+//            viewLifecycleOwner,
+//            object : OnBackPressedCallback(true) {
+//                override fun handleOnBackPressed() {
+//                    retryGame()
+//                }
+//
+//            })
     }
 
     private fun getDrawable(isWinner: Boolean) = if (isWinner) {
@@ -89,10 +94,11 @@ class GameResultFragment : Fragment() {
     }
 
     private fun retryGame() {
-        requireActivity().supportFragmentManager.popBackStack(
-            GameFragment.NAME,
-            FragmentManager.POP_BACK_STACK_INCLUSIVE
-        )
+        findNavController().popBackStack()
+//        requireActivity().supportFragmentManager.popBackStack(
+//            GameFragment.NAME,
+//            FragmentManager.POP_BACK_STACK_INCLUSIVE
+//        )
     }
 
     override fun onDestroyView() {
@@ -100,11 +106,11 @@ class GameResultFragment : Fragment() {
         _binding = null
     }
 
-    private fun parseGameResult() {
-        requireArguments().getParcelable<GameResult>(KEY_GAME_RESULT)?.let {
-            result = it
-        }
-    }
+//    private fun parseGameResult() {
+//        requireArguments().getParcelable<GameResult>(KEY_GAME_RESULT)?.let {
+//            result = it
+//        }
+//    }
 
     companion object {
         private const val KEY_GAME_RESULT = "game_result"
