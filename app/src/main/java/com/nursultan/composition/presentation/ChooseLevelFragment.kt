@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.nursultan.composition.R
 import com.nursultan.composition.databinding.FragmentChooseLevelBinding
 import com.nursultan.composition.domain.entity.Level
@@ -34,12 +35,16 @@ class ChooseLevelFragment : Fragment() {
     }
 
     private fun setLevelClickListener(tv: TextView, level: Level) {
-        tv.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, GameFragment.newInstance(level))
-                .addToBackStack(GameFragment.NAME)
-                .commit()
-        }
+       tv.setOnClickListener {
+           findNavController().navigate(
+               ChooseLevelFragmentDirections.actionChooseLevelFragmentToGameFragment(level)
+           )
+//            requireActivity().supportFragmentManager.beginTransaction()
+//                .replace(R.id.main_container, GameFragment.newInstance(level))
+//                .addToBackStack(GameFragment.NAME)
+//                .commit()
+//
+       }
     }
 
     override fun onDestroyView() {
