@@ -11,10 +11,4 @@ data class GameSettings(
     val minCountRightAnswers: Int,
     val minPercentOfRightAnswers: Int,
     val gameTimeInSeconds: Int
-) : Parcelable {
-    val minCountRightAnswersString: String
-        get() = minCountRightAnswers.toString()
-    val minPercentOfRightAnswersString: String
-        get() = minPercentOfRightAnswers.toString()
-
-}
+) : Parcelable

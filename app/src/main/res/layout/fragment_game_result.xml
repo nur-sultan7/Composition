@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="gameResult"
             type="com.nursultan.composition.domain.entity.GameResult" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.GameResultFragment">
@@ -22,12 +22,15 @@
             android:src="@drawable/happiness"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:resultEmoji="@{gameResult.winner}"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/tv_required_score"
             style="@style/GameOverTV"
-            android:text="@{gameResult.gameSettings.minCountRightAnswersString}"
+            android:text="@string/required_right_answers"
+            app:requiredAnswers="@{gameResult.gameSettings.minCountRightAnswers}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_game_result" />
@@ -35,7 +38,8 @@
         <TextView
             android:id="@+id/tv_score"
             style="@style/GameOverTV"
-            android:text="@{gameResult.countOfRightAnswersSting}"
+            android:text="@string/score_answers"
+            countOfAnswers="@{gameResult.countOfRightAnswers}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_required_score" />
@@ -43,15 +47,17 @@
         <TextView
             android:id="@+id/tv_required_percentage"
             style="@style/GameOverTV"
-            android:text="@{gameResult.gameSettings.minPercentOfRightAnswersString}"
+            requiredPercentage="@{gameResult.gameSettings.minPercentOfRightAnswers}"
             app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/required_right_answers_percentage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_score" />
 
         <TextView
             android:id="@+id/tv_right_percentage"
             style="@style/GameOverTV"
-            android:text="@string/right_answers_percentage"
+            app:percentageOfRightAnswers="@{gameResult.percentOfRightAnswers}"
+            tools:text="@string/right_answers_percentage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_required_percentage" />
