@@ -1,155 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.GameFragment">
+<layout>
 
-    <TextView
-        android:id="@+id/tv_timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/game_start_time"
-        android:textColor="@color/purple_700"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.GameFragment">
 
-    <TextView
-        android:id="@+id/tv_option1"
-        style="@style/OptionTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_green_light"
-        app:layout_constraintBottom_toTopOf="@+id/tv_option4"
-        app:layout_constraintEnd_toStartOf="@+id/tv_option2"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="1" />
+        <TextView
+            android:id="@+id/tv_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/game_start_time"
+            android:textColor="@color/purple_700"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_option2"
-        style="@style/OptionTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_light"
-        app:layout_constraintEnd_toStartOf="@id/tv_option3"
-        app:layout_constraintStart_toEndOf="@id/tv_option1"
-        app:layout_constraintTop_toTopOf="@+id/tv_option1"
-        tools:text="2" />
+        <TextView
+            android:id="@+id/tv_option1"
+            style="@style/OptionTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_green_light"
+            app:layout_constraintBottom_toTopOf="@+id/tv_option4"
+            app:layout_constraintEnd_toStartOf="@+id/tv_option2"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="1" />
 
-    <TextView
-        android:id="@+id/tv_option3"
-        style="@style/OptionTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_orange_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_option2"
-        app:layout_constraintTop_toTopOf="@+id/tv_option2"
-        tools:text="3" />
+        <TextView
+            android:id="@+id/tv_option2"
+            style="@style/OptionTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_light"
+            app:layout_constraintEnd_toStartOf="@id/tv_option3"
+            app:layout_constraintStart_toEndOf="@id/tv_option1"
+            app:layout_constraintTop_toTopOf="@+id/tv_option1"
+            tools:text="2" />
 
-    <TextView
-        android:id="@+id/tv_option4"
-        style="@style/OptionTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/tv_option5"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="4" />
+        <TextView
+            android:id="@+id/tv_option3"
+            style="@style/OptionTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_orange_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_option2"
+            app:layout_constraintTop_toTopOf="@+id/tv_option2"
+            tools:text="3" />
 
-    <TextView
-        android:id="@+id/tv_option5"
-        style="@style/OptionTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_purple"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/tv_option6"
-        app:layout_constraintStart_toEndOf="@+id/tv_option4"
-        tools:text="5" />
+        <TextView
+            android:id="@+id/tv_option4"
+            style="@style/OptionTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_option5"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="4" />
 
-    <TextView
-        android:id="@+id/tv_option6"
-        style="@style/OptionTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_option5"
-        tools:text="6" />
+        <TextView
+            android:id="@+id/tv_option5"
+            style="@style/OptionTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_purple"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_option6"
+            app:layout_constraintStart_toEndOf="@+id/tv_option4"
+            tools:text="5" />
 
-    <TextView
-        android:id="@+id/tv_progress"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/game_right_answers_count"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tv_option6"
+            style="@style/OptionTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_light"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_option5"
+            tools:text="6" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:backgroundTint="@color/design_default_color_primary_dark"
-        android:max="100"
-        app:layout_constraintBottom_toTopOf="@+id/tv_option2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tv_progress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="30dp"
+            android:text="@string/game_right_answers_count"
+            app:layout_constraintBottom_toTopOf="@+id/progressBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_question"
-        style="@style/GameTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:background="@color/teal_700"
-        android:text="@string/question_mark"
-        app:layout_constraintBottom_toTopOf="@+id/tv_progress"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_left_number"
-        app:layout_constraintTop_toBottomOf="@+id/game_sum" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/design_default_color_primary_dark"
+            android:max="100"
+            app:layout_constraintBottom_toTopOf="@+id/tv_option2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        style="@style/GameTV"
-        android:background="@color/teal_700"
-        android:id="@+id/tv_left_number"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@+id/tv_question"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_question"
-        tools:text="17" />
+        <TextView
+            android:id="@+id/tv_question"
+            style="@style/GameTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@color/teal_700"
+            android:text="@string/question_mark"
+            app:layout_constraintBottom_toTopOf="@+id/tv_progress"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_left_number"
+            app:layout_constraintTop_toBottomOf="@+id/game_sum" />
 
-    <TextView
-        style="@style/GameTV"
-        android:background="@drawable/rounded_tv"
-        android:id="@+id/game_sum"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        app:layout_constraintDimensionRatio="1:1"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@id/tv_question"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_timer"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:text="25" />
+        <TextView
+            android:id="@+id/tv_left_number"
+            style="@style/GameTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/teal_700"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/tv_question"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_question"
+            tools:text="17" />
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/game_sum"
+            style="@style/GameTV"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_tv"
+            app:layout_constraintBottom_toTopOf="@id/tv_question"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_timer"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="25" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

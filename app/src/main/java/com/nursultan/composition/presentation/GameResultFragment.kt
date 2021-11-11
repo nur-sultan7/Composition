@@ -43,6 +43,7 @@ class GameResultFragment : Fragment() {
     }
 
     private fun bindingViews() {
+        binding.gameResult = result
         with(binding)
         {
             ivGameResult.setImageDrawable(
@@ -51,24 +52,24 @@ class GameResultFragment : Fragment() {
                     getDrawable(result.winner)
                 )
             )
-            tvRequiredPercentage.text = String.format(
-                getString(R.string.required_right_answers_percentage),
-                result.gameSettings.minPercentOfRightAnswers
-            )
-
-            tvRequiredScore.text = String.format(
-                getString(R.string.required_right_answers),
-                result.gameSettings.minCountRightAnswers
-            )
+//            tvRequiredPercentage.text = String.format(
+//                getString(R.string.required_right_answers_percentage),
+//                result.gameSettings.minPercentOfRightAnswers
+//            )
+//
+//            tvRequiredScore.text = String.format(
+//                getString(R.string.required_right_answers),
+//                result.gameSettings.minCountRightAnswers
+//            )
 
             tvRightPercentage.text = String.format(
                 getString(R.string.right_answers_percentage),
                 result.percentOfRightAnswers.toString()
             )
-            tvScore.text = String.format(
-                getString(R.string.score_answers),
-                result.countOfRightAnswers
-            )
+//            tvScore.text = String.format(
+//                getString(R.string.score_answers),
+//                result.countOfRightAnswers
+//            )
         }
     }
 
