@@ -13,4 +13,8 @@ data class GameResult (
 {
     val percentOfRightAnswers: Int
         get() = (countOfRightAnswers / countOfQuestion.toDouble() * 100).toInt()
+    val countOfRightAnswersSting: String
+        get() = countOfRightAnswers.toString()
+
+
 }
