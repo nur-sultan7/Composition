@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.nursultan.composition.R
@@ -22,10 +20,6 @@ class GameResultFragment : Fragment() {
     private var _binding: FragmentGameResultBinding? = null
     private val binding: FragmentGameResultBinding
         get() = _binding ?: throw RuntimeException("FragmentGameResultBinding is null")
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,14 +38,14 @@ class GameResultFragment : Fragment() {
 
     private fun bindingViews() {
         binding.gameResult = result
-        with(binding)
-        {
-            ivGameResult.setImageDrawable(
-                ContextCompat.getDrawable(
-                    requireContext(),
-                    getDrawable(result.winner)
-                )
-            )
+//        with(binding)
+//        {
+//            ivGameResult.setImageDrawable(
+//                ContextCompat.getDrawable(
+//                    requireContext(),
+//                    getDrawable(result.winner)
+//                )
+//            )
 //            tvRequiredPercentage.text = String.format(
 //                getString(R.string.required_right_answers_percentage),
 //                result.gameSettings.minPercentOfRightAnswers
@@ -62,15 +56,15 @@ class GameResultFragment : Fragment() {
 //                result.gameSettings.minCountRightAnswers
 //            )
 
-            tvRightPercentage.text = String.format(
-                getString(R.string.right_answers_percentage),
-                result.percentOfRightAnswers.toString()
-            )
+//            tvRightPercentage.text = String.format(
+//                getString(R.string.right_answers_percentage),
+//                result.percentOfRightAnswers.toString()
+//            )
 //            tvScore.text = String.format(
 //                getString(R.string.score_answers),
 //                result.countOfRightAnswers
 //            )
-        }
+//        }
     }
 
     private fun setOnClickListeners() {
@@ -88,11 +82,7 @@ class GameResultFragment : Fragment() {
 //            })
     }
 
-    private fun getDrawable(isWinner: Boolean) = if (isWinner) {
-        R.drawable.happiness
-    } else {
-        R.drawable.sad
-    }
+
 
     private fun retryGame() {
         findNavController().popBackStack()
