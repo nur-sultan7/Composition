@@ -69,3 +69,20 @@ private fun getIsRightColor(context: Context,isRequired: Boolean): Int {
         ContextCompat.getColor(context, android.R.color.holo_red_light)
     }
 }
+@BindingAdapter("numberAsText")
+fun bindNumberAsText(textView: TextView, number: Int)
+{
+    textView.text=number.toString()
+}
+@BindingAdapter("setOnOptionClickListener")
+fun bindOnOptionClickListener(textView: TextView,clickListener: OnOptionClickListener )
+{
+    textView.setOnClickListener {
+        clickListener.onOptionClick(textView.text.toString().toInt())
+    }
+}
+interface OnOptionClickListener
+{
+    fun onOptionClick(option: Int)
+}
+

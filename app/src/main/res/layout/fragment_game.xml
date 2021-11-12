@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="viewModel"
             type="com.nursultan.composition.presentation.GameViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.GameFragment">
@@ -36,6 +36,8 @@
             app:layout_constraintBottom_toTopOf="@+id/tv_option4"
             app:layout_constraintEnd_toStartOf="@+id/tv_option2"
             app:layout_constraintStart_toStartOf="parent"
+            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
+            android:text="@{viewModel.gameQuestion.option.get(0).toString()}"
             tools:text="1" />
 
         <TextView
@@ -44,6 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_red_light"
+            android:text="@{viewModel.gameQuestion.option.get(1).toString()}"
             app:layout_constraintEnd_toStartOf="@id/tv_option3"
             app:layout_constraintStart_toEndOf="@id/tv_option1"
             app:layout_constraintTop_toTopOf="@+id/tv_option1"
@@ -58,6 +61,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_option2"
             app:layout_constraintTop_toTopOf="@+id/tv_option2"
+            android:text="@{viewModel.gameQuestion.option.get(2).toString()}"
             tools:text="3" />
 
         <TextView
@@ -69,6 +73,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_option5"
             app:layout_constraintStart_toStartOf="parent"
+            android:text="@{viewModel.gameQuestion.option.get(3).toString()}"
             tools:text="4" />
 
         <TextView
@@ -80,6 +85,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_option6"
             app:layout_constraintStart_toEndOf="@+id/tv_option4"
+            android:text="@{viewModel.gameQuestion.option.get(4).toString()}"
             tools:text="5" />
 
         <TextView
@@ -91,6 +97,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_option5"
+            android:text="@{viewModel.gameQuestion.option.get(5).toString()}"
             tools:text="6" />
 
         <TextView
@@ -147,6 +154,7 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_question"
+            app:numberAsText="@{viewModel.gameQuestion.visibleNumber}"
             tools:text="17" />
 
         <TextView
@@ -162,6 +170,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_timer"
             app:layout_constraintVertical_chainStyle="packed"
+            app:numberAsText="@{viewModel.gameQuestion.sum}"
             tools:text="25" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

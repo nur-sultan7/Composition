@@ -79,13 +79,13 @@ class GameFragment : Fragment() {
         viewModel.gameResult.observe(viewLifecycleOwner, {
             launchGameResultFragment(it)
         })
-        viewModel.gameQuestion.observe(viewLifecycleOwner, {
-            binding.gameSum.text = it.sum.toString()
-            binding.tvLeftNumber.text = it.visibleNumber.toString()
-            for (index in 0 until tvOptions.size) {
-                tvOptions[index].text = it.option[index].toString()
-            }
-        })
+//        viewModel.gameQuestion.observe(viewLifecycleOwner, {
+//            binding.gameSum.text = it.sum.toString()
+//            binding.tvLeftNumber.text = it.visibleNumber.toString()
+//            for (index in 0 until tvOptions.size) {
+//                tvOptions[index].text = it.option[index].toString()
+//            }
+//        })
 //        viewModel.timerTime.observe(viewLifecycleOwner, {
 //            binding.tvTimer.text = it.toString()
 //        })
