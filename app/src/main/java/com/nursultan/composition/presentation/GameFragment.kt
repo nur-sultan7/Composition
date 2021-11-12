@@ -56,7 +56,8 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.progressBar.secondaryProgress = viewModel.requiredPercentageOfRightAnswers
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         observeModelView()
         setClickOptions()
     }
@@ -69,12 +70,12 @@ class GameFragment : Fragment() {
     }
 
     private fun observeModelView() {
-        viewModel.isRequiredCount.observe(viewLifecycleOwner, {
-            binding.tvProgress.setTextColor(getIsRightColor(it))
-        })
-        viewModel.isRequiredPercentage.observe(viewLifecycleOwner, {
-            binding.progressBar.progressTintList = ColorStateList.valueOf(getIsRightColor(it))
-        })
+//        viewModel.isRequiredCount.observe(viewLifecycleOwner, {
+//            binding.tvProgress.setTextColor(getIsRightColor(it))
+//        })
+//        viewModel.isRequiredPercentage.observe(viewLifecycleOwner, {
+//            binding.progressBar.progressTintList = ColorStateList.valueOf(getIsRightColor(it))
+//        })
         viewModel.gameResult.observe(viewLifecycleOwner, {
             launchGameResultFragment(it)
         })
@@ -85,24 +86,18 @@ class GameFragment : Fragment() {
                 tvOptions[index].text = it.option[index].toString()
             }
         })
-        viewModel.timerTime.observe(viewLifecycleOwner, {
-            binding.tvTimer.text = it.toString()
-        })
-        viewModel.progressString.observe(viewLifecycleOwner, {
-            binding.tvProgress.text = it
-        })
-        viewModel.percentageOfRightAnswers.observe(viewLifecycleOwner, {
-            binding.progressBar.setProgress(it, true)
-        })
+//        viewModel.timerTime.observe(viewLifecycleOwner, {
+//            binding.tvTimer.text = it.toString()
+//        })
+//        viewModel.progressString.observe(viewLifecycleOwner, {
+//            binding.tvProgress.text = it
+//        })
+//        viewModel.percentageOfRightAnswers.observe(viewLifecycleOwner, {
+//            binding.progressBar.setProgress(it, true)
+//        })
     }
 
-    private fun getIsRightColor(boolean: Boolean): Int {
-        return if (boolean) {
-            ContextCompat.getColor(requireContext(), android.R.color.holo_green_dark)
-        } else {
-            ContextCompat.getColor(requireContext(), android.R.color.holo_red_light)
-        }
-    }
+
 
     private fun checkAnswer(answer: CharSequence) {
         viewModel.checkIsRightAnswer(answer.toString().toInt())
