@@ -29,16 +29,16 @@ class GameFragment : Fragment() {
     private val viewModel by lazy {
         ViewModelProvider(this,gameViewModelFactory)[GameViewModel::class.java]
     }
-    private val tvOptions by lazy {
-        mutableListOf<TextView>().apply {
-            add(binding.tvOption1)
-            add(binding.tvOption2)
-            add(binding.tvOption3)
-            add(binding.tvOption4)
-            add(binding.tvOption5)
-            add(binding.tvOption6)
-        }
-    }
+//    private val tvOptions by lazy {
+//        mutableListOf<TextView>().apply {
+//            add(binding.tvOption1)
+//            add(binding.tvOption2)
+//            add(binding.tvOption3)
+//            add(binding.tvOption4)
+//            add(binding.tvOption5)
+//            add(binding.tvOption6)
+//        }
+//    }
 
 //    private lateinit var level: Level
     private var _binding: FragmentGameBinding? = null
@@ -59,15 +59,15 @@ class GameFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         observeModelView()
-        setClickOptions()
+//        setClickOptions()
     }
 
-    private fun setClickOptions() {
-        for (tvOption in tvOptions)
-            tvOption.setOnClickListener {
-                checkAnswer(tvOption.text)
-            }
-    }
+//    private fun setClickOptions() {
+//        for (tvOption in tvOptions)
+//            tvOption.setOnClickListener {
+//                checkAnswer(tvOption.text)
+//            }
+//    }
 
     private fun observeModelView() {
 //        viewModel.isRequiredCount.observe(viewLifecycleOwner, {
@@ -98,10 +98,10 @@ class GameFragment : Fragment() {
     }
 
 
-
-    private fun checkAnswer(answer: CharSequence) {
-        viewModel.checkIsRightAnswer(answer.toString().toInt())
-    }
+//
+//    private fun checkAnswer(answer: CharSequence) {
+//        viewModel.checkIsRightAnswer(answer.toString().toInt())
+//    }
 
 
     private fun launchGameResultFragment(gameResult: GameResult) {

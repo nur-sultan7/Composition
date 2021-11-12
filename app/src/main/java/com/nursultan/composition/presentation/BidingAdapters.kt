@@ -26,7 +26,7 @@ fun bindRequiredPercentage(textView: TextView, percent: Int) {
 
 @BindingAdapter("percentageOfRightAnswers")
 fun bindPercentageRightAnswers(textView: TextView, percent: Int) {
-    setText(textView, R.string.required_right_answers_percentage, percent)
+    setText(textView, R.string.right_answers_percentage, percent)
 }
 
 fun setText(textView: TextView, res: Int, value: Int) {

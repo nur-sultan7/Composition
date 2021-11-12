@@ -46,6 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_red_light"
+            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
             android:text="@{viewModel.gameQuestion.option.get(1).toString()}"
             app:layout_constraintEnd_toStartOf="@id/tv_option3"
             app:layout_constraintStart_toEndOf="@id/tv_option1"
@@ -61,6 +62,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_option2"
             app:layout_constraintTop_toTopOf="@+id/tv_option2"
+            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
             android:text="@{viewModel.gameQuestion.option.get(2).toString()}"
             tools:text="3" />
 
@@ -70,10 +72,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_blue_dark"
+            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
+            android:text="@{viewModel.gameQuestion.option.get(3).toString()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_option5"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@{viewModel.gameQuestion.option.get(3).toString()}"
             tools:text="4" />
 
         <TextView
@@ -85,6 +88,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_option6"
             app:layout_constraintStart_toEndOf="@+id/tv_option4"
+            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
             android:text="@{viewModel.gameQuestion.option.get(4).toString()}"
             tools:text="5" />
 
@@ -97,6 +101,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_option5"
+            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
             android:text="@{viewModel.gameQuestion.option.get(5).toString()}"
             tools:text="6" />
 
