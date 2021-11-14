@@ -103,6 +103,7 @@ class GameViewModel(
         _gameQuestion.value = generateQuestionUseCase(maxSum)
         countOfQuestion++
     }
+
     init {
         startGame()
     }

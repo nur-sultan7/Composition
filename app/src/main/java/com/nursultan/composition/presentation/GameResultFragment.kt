@@ -33,11 +33,11 @@ class GameResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setOnClickListeners()
-        bindingViews()
+        binding.gameResult = result
     }
 
-    private fun bindingViews() {
-        binding.gameResult = result
+//    private fun bindingViews() {
+
 //        with(binding)
 //        {
 //            ivGameResult.setImageDrawable(
@@ -65,7 +65,7 @@ class GameResultFragment : Fragment() {
 //                result.countOfRightAnswers
 //            )
 //        }
-    }
+//    }
 
     private fun setOnClickListeners() {
         binding.btnRetry.setOnClickListener {
@@ -81,7 +81,6 @@ class GameResultFragment : Fragment() {
 //
 //            })
     }
-
 
 
     private fun retryGame() {
@@ -103,14 +102,14 @@ class GameResultFragment : Fragment() {
 //        }
 //    }
 
-    companion object {
-        private const val KEY_GAME_RESULT = "game_result"
-        fun newInstance(gameResult: GameResult): GameResultFragment {
-            return GameResultFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(KEY_GAME_RESULT, gameResult)
-                }
-            }
-        }
-    }
+//    companion object {
+//        private const val KEY_GAME_RESULT = "game_result"
+//        fun newInstance(gameResult: GameResult): GameResultFragment {
+//            return GameResultFragment().apply {
+//                arguments = Bundle().apply {
+//                    putParcelable(KEY_GAME_RESULT, gameResult)
+//                }
+//            }
+//        }
+//    }
 }

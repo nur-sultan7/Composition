@@ -1,6 +1,9 @@
 package com.nursultan.composition.presentation
 
+import android.content.Context
+import android.content.res.ColorStateList
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -23,7 +26,7 @@ fun bindRequiredPercentage(textView: TextView, percent: Int) {
 
 @BindingAdapter("percentageOfRightAnswers")
 fun bindPercentageRightAnswers(textView: TextView, percent: Int) {
-    setText(textView, R.string.required_right_answers_percentage, percent)
+    setText(textView, R.string.right_answers_percentage, percent)
 }
 
 fun setText(textView: TextView, res: Int, value: Int) {
@@ -43,3 +46,44 @@ private fun getDrawable(isWinner: Boolean) = if (isWinner) {
 } else {
     R.drawable.sad
 }
+
+@BindingAdapter("setProgress")
+fun bindProgressBar(progressBar: ProgressBar, value: Int) {
+    progressBar.setProgress(value, true)
+}
+
+@BindingAdapter("isRequiredCount")
+fun bindIsRequiredCount(textView: TextView, isRequired: Boolean) {
+    textView.setTextColor(getIsRightColor(textView.context, isRequired))
+}
+
+@BindingAdapter("isRequiredPercentage")
+fun bindIsRequiredPercentage(progressBar: ProgressBar, isRequired: Boolean) {
+    progressBar.progressTintList =
+        ColorStateList.valueOf(getIsRightColor(progressBar.context, isRequired))
+}
+
+private fun getIsRightColor(context: Context, isRequired: Boolean): Int {
+    return if (isRequired) {
+        ContextCompat.getColor(context, android.R.color.holo_green_dark)
+    } else {
+        ContextCompat.getColor(context, android.R.color.holo_red_light)
+    }
+}
+
+@BindingAdapter("numberAsText")
+fun bindNumberAsText(textView: TextView, number: Int) {
+    textView.text = number.toString()
+}
+
+@BindingAdapter("setOnOptionClickListener")
+fun bindOnOptionClickListener(textView: TextView, clickListener: OnOptionClickListener) {
+    textView.setOnClickListener {
+        clickListener.onOptionClick(textView.text.toString().toInt())
+    }
+}
+
+interface OnOptionClickListener {
+    fun onOptionClick(option: Int)
+}
+

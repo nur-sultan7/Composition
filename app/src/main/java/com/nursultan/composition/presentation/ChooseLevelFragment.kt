@@ -35,16 +35,16 @@ class ChooseLevelFragment : Fragment() {
     }
 
     private fun setLevelClickListener(tv: TextView, level: Level) {
-       tv.setOnClickListener {
-           findNavController().navigate(
-               ChooseLevelFragmentDirections.actionChooseLevelFragmentToGameFragment(level)
-           )
+        tv.setOnClickListener {
+            findNavController().navigate(
+                ChooseLevelFragmentDirections.actionChooseLevelFragmentToGameFragment(level)
+            )
 //            requireActivity().supportFragmentManager.beginTransaction()
 //                .replace(R.id.main_container, GameFragment.newInstance(level))
 //                .addToBackStack(GameFragment.NAME)
 //                .commit()
 //
-       }
+        }
     }
 
     override fun onDestroyView() {

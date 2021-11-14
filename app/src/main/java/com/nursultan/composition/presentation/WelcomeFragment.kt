@@ -32,7 +32,7 @@ class WelcomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentWelcomeBinding.inflate(inflater,container,false)
+        _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 

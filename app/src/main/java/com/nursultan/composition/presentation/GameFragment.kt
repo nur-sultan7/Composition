@@ -27,20 +27,20 @@ class GameFragment : Fragment() {
         GameViewModelFactory(requireActivity().application, args.level)
     }
     private val viewModel by lazy {
-        ViewModelProvider(this,gameViewModelFactory)[GameViewModel::class.java]
+        ViewModelProvider(this, gameViewModelFactory)[GameViewModel::class.java]
     }
-    private val tvOptions by lazy {
-        mutableListOf<TextView>().apply {
-            add(binding.tvOption1)
-            add(binding.tvOption2)
-            add(binding.tvOption3)
-            add(binding.tvOption4)
-            add(binding.tvOption5)
-            add(binding.tvOption6)
-        }
-    }
+//    private val tvOptions by lazy {
+//        mutableListOf<TextView>().apply {
+//            add(binding.tvOption1)
+//            add(binding.tvOption2)
+//            add(binding.tvOption3)
+//            add(binding.tvOption4)
+//            add(binding.tvOption5)
+//            add(binding.tvOption6)
+//        }
+//    }
 
-//    private lateinit var level: Level
+    //    private lateinit var level: Level
     private var _binding: FragmentGameBinding? = null
     private val binding: FragmentGameBinding
         get() = _binding ?: throw RuntimeException("FragmentGameBinding is null")
@@ -56,57 +56,52 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.progressBar.secondaryProgress = viewModel.requiredPercentageOfRightAnswers
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         observeModelView()
-        setClickOptions()
+//        setClickOptions()
     }
 
-    private fun setClickOptions() {
-        for (tvOption in tvOptions)
-            tvOption.setOnClickListener {
-                checkAnswer(tvOption.text)
-            }
-    }
+//    private fun setClickOptions() {
+//        for (tvOption in tvOptions)
+//            tvOption.setOnClickListener {
+//                checkAnswer(tvOption.text)
+//            }
+//    }
 
     private fun observeModelView() {
-        viewModel.isRequiredCount.observe(viewLifecycleOwner, {
-            binding.tvProgress.setTextColor(getIsRightColor(it))
-        })
-        viewModel.isRequiredPercentage.observe(viewLifecycleOwner, {
-            binding.progressBar.progressTintList = ColorStateList.valueOf(getIsRightColor(it))
-        })
+//        viewModel.isRequiredCount.observe(viewLifecycleOwner, {
+//            binding.tvProgress.setTextColor(getIsRightColor(it))
+//        })
+//        viewModel.isRequiredPercentage.observe(viewLifecycleOwner, {
+//            binding.progressBar.progressTintList = ColorStateList.valueOf(getIsRightColor(it))
+//        })
         viewModel.gameResult.observe(viewLifecycleOwner, {
             launchGameResultFragment(it)
         })
-        viewModel.gameQuestion.observe(viewLifecycleOwner, {
-            binding.gameSum.text = it.sum.toString()
-            binding.tvLeftNumber.text = it.visibleNumber.toString()
-            for (index in 0 until tvOptions.size) {
-                tvOptions[index].text = it.option[index].toString()
-            }
-        })
-        viewModel.timerTime.observe(viewLifecycleOwner, {
-            binding.tvTimer.text = it.toString()
-        })
-        viewModel.progressString.observe(viewLifecycleOwner, {
-            binding.tvProgress.text = it
-        })
-        viewModel.percentageOfRightAnswers.observe(viewLifecycleOwner, {
-            binding.progressBar.setProgress(it, true)
-        })
+//        viewModel.gameQuestion.observe(viewLifecycleOwner, {
+//            binding.gameSum.text = it.sum.toString()
+//            binding.tvLeftNumber.text = it.visibleNumber.toString()
+//            for (index in 0 until tvOptions.size) {
+//                tvOptions[index].text = it.option[index].toString()
+//            }
+//        })
+//        viewModel.timerTime.observe(viewLifecycleOwner, {
+//            binding.tvTimer.text = it.toString()
+//        })
+//        viewModel.progressString.observe(viewLifecycleOwner, {
+//            binding.tvProgress.text = it
+//        })
+//        viewModel.percentageOfRightAnswers.observe(viewLifecycleOwner, {
+//            binding.progressBar.setProgress(it, true)
+//        })
     }
 
-    private fun getIsRightColor(boolean: Boolean): Int {
-        return if (boolean) {
-            ContextCompat.getColor(requireContext(), android.R.color.holo_green_dark)
-        } else {
-            ContextCompat.getColor(requireContext(), android.R.color.holo_red_light)
-        }
-    }
 
-    private fun checkAnswer(answer: CharSequence) {
-        viewModel.checkIsRightAnswer(answer.toString().toInt())
-    }
+//
+//    private fun checkAnswer(answer: CharSequence) {
+//        viewModel.checkIsRightAnswer(answer.toString().toInt())
+//    }
 
 
     private fun launchGameResultFragment(gameResult: GameResult) {
