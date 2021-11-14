@@ -48,41 +48,42 @@ private fun getDrawable(isWinner: Boolean) = if (isWinner) {
 }
 
 @BindingAdapter("setProgress")
-fun bindProgressBar(progressBar: ProgressBar, value: Int)
-{
-   progressBar.setProgress(value, true)
+fun bindProgressBar(progressBar: ProgressBar, value: Int) {
+    progressBar.setProgress(value, true)
 }
+
 @BindingAdapter("isRequiredCount")
-fun bindIsRequiredCount(textView: TextView, isRequired: Boolean)
-{
-    textView.setTextColor(getIsRightColor(textView.context,isRequired))
+fun bindIsRequiredCount(textView: TextView, isRequired: Boolean) {
+    textView.setTextColor(getIsRightColor(textView.context, isRequired))
 }
+
 @BindingAdapter("isRequiredPercentage")
-fun bindIsRequiredPercentage(progressBar: ProgressBar, isRequired: Boolean)
-{
-    progressBar.progressTintList = ColorStateList.valueOf(getIsRightColor(progressBar.context,isRequired))
+fun bindIsRequiredPercentage(progressBar: ProgressBar, isRequired: Boolean) {
+    progressBar.progressTintList =
+        ColorStateList.valueOf(getIsRightColor(progressBar.context, isRequired))
 }
-private fun getIsRightColor(context: Context,isRequired: Boolean): Int {
+
+private fun getIsRightColor(context: Context, isRequired: Boolean): Int {
     return if (isRequired) {
         ContextCompat.getColor(context, android.R.color.holo_green_dark)
     } else {
         ContextCompat.getColor(context, android.R.color.holo_red_light)
     }
 }
+
 @BindingAdapter("numberAsText")
-fun bindNumberAsText(textView: TextView, number: Int)
-{
-    textView.text=number.toString()
+fun bindNumberAsText(textView: TextView, number: Int) {
+    textView.text = number.toString()
 }
+
 @BindingAdapter("setOnOptionClickListener")
-fun bindOnOptionClickListener(textView: TextView,clickListener: OnOptionClickListener )
-{
+fun bindOnOptionClickListener(textView: TextView, clickListener: OnOptionClickListener) {
     textView.setOnClickListener {
         clickListener.onOptionClick(textView.text.toString().toInt())
     }
 }
-interface OnOptionClickListener
-{
+
+interface OnOptionClickListener {
     fun onOptionClick(option: Int)
 }
 

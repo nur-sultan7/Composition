@@ -27,7 +27,7 @@ class GameFragment : Fragment() {
         GameViewModelFactory(requireActivity().application, args.level)
     }
     private val viewModel by lazy {
-        ViewModelProvider(this,gameViewModelFactory)[GameViewModel::class.java]
+        ViewModelProvider(this, gameViewModelFactory)[GameViewModel::class.java]
     }
 //    private val tvOptions by lazy {
 //        mutableListOf<TextView>().apply {
@@ -40,7 +40,7 @@ class GameFragment : Fragment() {
 //        }
 //    }
 
-//    private lateinit var level: Level
+    //    private lateinit var level: Level
     private var _binding: FragmentGameBinding? = null
     private val binding: FragmentGameBinding
         get() = _binding ?: throw RuntimeException("FragmentGameBinding is null")

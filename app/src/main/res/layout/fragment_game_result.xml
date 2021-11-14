@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="gameResult"
             type="com.nursultan.composition.domain.entity.GameResult" />
@@ -30,16 +32,16 @@
             android:id="@+id/tv_required_score"
             style="@style/GameOverTV"
             android:text="@string/required_right_answers"
-            app:requiredAnswers="@{gameResult.gameSettings.minCountRightAnswers}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_game_result" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_game_result"
+            app:requiredAnswers="@{gameResult.gameSettings.minCountRightAnswers}" />
 
         <TextView
             android:id="@+id/tv_score"
             style="@style/GameOverTV"
-            android:text="@string/score_answers"
             countOfAnswers="@{gameResult.countOfRightAnswers}"
+            android:text="@string/score_answers"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_required_score" />
@@ -49,18 +51,18 @@
             style="@style/GameOverTV"
             requiredPercentage="@{gameResult.gameSettings.minPercentOfRightAnswers}"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="@string/required_right_answers_percentage"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_score" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_score"
+            tools:text="@string/required_right_answers_percentage" />
 
         <TextView
             android:id="@+id/tv_right_percentage"
             style="@style/GameOverTV"
-            app:percentageOfRightAnswers="@{gameResult.percentOfRightAnswers}"
-            tools:text="@string/right_answers_percentage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_required_percentage" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_required_percentage"
+            app:percentageOfRightAnswers="@{gameResult.percentOfRightAnswers}"
+            tools:text="@string/right_answers_percentage" />
 
         <Button
             android:id="@+id/btn_retry"

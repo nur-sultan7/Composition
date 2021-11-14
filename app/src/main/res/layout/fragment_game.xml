@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.nursultan.composition.presentation.GameViewModel" />
@@ -19,34 +21,34 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@{viewModel.timerTime}"
-            tools:text="@string/game_start_time"
             android:textColor="@color/purple_700"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/game_start_time" />
 
         <TextView
             android:id="@+id/tv_option1"
             style="@style/OptionTV"
+            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_green_light"
+            android:text="@{viewModel.gameQuestion.option.get(0).toString()}"
             app:layout_constraintBottom_toTopOf="@+id/tv_option4"
             app:layout_constraintEnd_toStartOf="@+id/tv_option2"
             app:layout_constraintStart_toStartOf="parent"
-            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
-            android:text="@{viewModel.gameQuestion.option.get(0).toString()}"
             tools:text="1" />
 
         <TextView
             android:id="@+id/tv_option2"
             style="@style/OptionTV"
+            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_red_light"
-            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
             android:text="@{viewModel.gameQuestion.option.get(1).toString()}"
             app:layout_constraintEnd_toStartOf="@id/tv_option3"
             app:layout_constraintStart_toEndOf="@id/tv_option1"
@@ -56,23 +58,23 @@
         <TextView
             android:id="@+id/tv_option3"
             style="@style/OptionTV"
+            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_orange_light"
+            android:text="@{viewModel.gameQuestion.option.get(2).toString()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_option2"
             app:layout_constraintTop_toTopOf="@+id/tv_option2"
-            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
-            android:text="@{viewModel.gameQuestion.option.get(2).toString()}"
             tools:text="3" />
 
         <TextView
             android:id="@+id/tv_option4"
             style="@style/OptionTV"
+            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_blue_dark"
-            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
             android:text="@{viewModel.gameQuestion.option.get(3).toString()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_option5"
@@ -82,42 +84,42 @@
         <TextView
             android:id="@+id/tv_option5"
             style="@style/OptionTV"
+            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_purple"
+            android:text="@{viewModel.gameQuestion.option.get(4).toString()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_option6"
             app:layout_constraintStart_toEndOf="@+id/tv_option4"
-            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
-            android:text="@{viewModel.gameQuestion.option.get(4).toString()}"
             tools:text="5" />
 
         <TextView
             android:id="@+id/tv_option6"
             style="@style/OptionTV"
+            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_blue_light"
+            android:text="@{viewModel.gameQuestion.option.get(5).toString()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_option5"
-            setOnOptionClickListener="@{(option)->viewModel.checkIsRightAnswer(option)}"
-            android:text="@{viewModel.gameQuestion.option.get(5).toString()}"
             tools:text="6" />
 
         <TextView
             android:id="@+id/tv_progress"
+            isRequiredCount="@{viewModel.isRequiredCount()}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="30dp"
             android:text="@{viewModel.progressString}"
-            isRequiredCount="@{viewModel.isRequiredCount()}"
-            tools:text="@string/game_right_answers_count"
             app:layout_constraintBottom_toTopOf="@+id/progressBar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/game_right_answers_count" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -127,12 +129,12 @@
             android:layout_marginBottom="30dp"
             android:backgroundTint="@color/design_default_color_primary_dark"
             android:max="100"
+            android:secondaryProgress="@{viewModel.requiredPercentageOfRightAnswers}"
+            app:isRequiredPercentage="@{viewModel.isRequiredPercentage()}"
             app:layout_constraintBottom_toTopOf="@+id/tv_option2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:setProgress="@{viewModel.percentageOfRightAnswers}"
-            app:isRequiredPercentage="@{viewModel.isRequiredPercentage()}"
-            android:secondaryProgress="@{viewModel.requiredPercentageOfRightAnswers}"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:setProgress="@{viewModel.percentageOfRightAnswers}" />
 
         <TextView
             android:id="@+id/tv_question"

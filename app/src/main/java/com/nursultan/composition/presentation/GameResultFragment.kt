@@ -83,7 +83,6 @@ class GameResultFragment : Fragment() {
     }
 
 
-
     private fun retryGame() {
         findNavController().popBackStack()
 //        requireActivity().supportFragmentManager.popBackStack(
